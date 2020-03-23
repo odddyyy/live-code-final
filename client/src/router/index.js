@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Country from '../views/Country.vue'
+import Report from '../views/Report.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,12 @@ const routes = [
     path: '/countries',
     name: 'Country',
     component: Country,
+    meta: { requireAuth:true }
+  },
+  {
+    path: '/profile',
+    name: 'Report',
+    component: Report,
     meta: { requireAuth:true }
   },
 ]

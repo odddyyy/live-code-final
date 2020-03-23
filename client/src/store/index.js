@@ -6,11 +6,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    countries: ''
+    countries: '',
+    userId: ''
   },
   mutations: {
     fillCountry(state, payload) {
+      payload.sort((a,b) => a.id - b.id)
       state.countries = payload
+    },
+    fillId(state, id) {
+      state.userId = id
     }
   },
   actions: {
@@ -28,6 +33,9 @@ export default new Vuex.Store({
       .catch(response => {
         console.log(response)
       })
+    },
+    throwId(context, id) {
+      context.commit('fillId', id)
     } 
   },
   modules: {

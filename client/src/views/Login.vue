@@ -46,6 +46,7 @@ export default {
             })
             .then(data => {
                 localStorage.setItem('token', data.data.token)
+                this.$store.dispatch("throwId", data.data.id)
                 this.$router.push({ name: 'Country' })
             })
             .catch(response => {

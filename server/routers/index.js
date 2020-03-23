@@ -7,7 +7,7 @@ const authorization = require('../middlewares/authorization')
 
 router.post('/login', UserController.login)
 router.get('/countries', authentication, CountryController.getAll)
-router.get('/reports', authentication, ReportController.getAll)
+router.get('/reports', authentication, ReportController.showAll)
 router.post('/reports', authentication, ReportController.addReport)
 router.delete('/reports/:id', authentication, authorization, ReportController.deleteReport)
 

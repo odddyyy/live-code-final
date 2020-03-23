@@ -2,9 +2,9 @@ const { Report, Country } = require('../models')
 
 class ReportController {
 
-    static async getAll (req, res, next) {
+    static async showAll (req, res, next) {
         try {
-            const reports = await Report.findAll()
+            const reports = await Report.findAll({where:{userId:req.userData.id}})
             res.status(200).json(reports)
         } catch (err) {
             next(err)
@@ -13,6 +13,7 @@ class ReportController {
     }
 
     static async addReport (req, res, next) {
+        let temp = null
         const { cases, CountryId } = req.body
         try {
             const reports = await Report.create({
@@ -20,8 +21,14 @@ class ReportController {
                 CountryId,
                 userId: req.userData.id
             })
-            const country = await Reports.findOne()
-            console.log(country)
+            const country = await Country.findOne({where:{id:CountryId}})
+            const addingCause = {
+                name: country.name,
+                cases: country.cases+reports.report,
+                death: country.deaths,
+                recovered: country.recovered
+            }
+            const updating = await Country.update(addingCause, {where:{id:country.id}})
             res.status(201).json(reports)   
         } catch (err) {
             next(err)

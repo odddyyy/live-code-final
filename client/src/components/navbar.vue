@@ -1,10 +1,10 @@
 <template>
   <ul class="nav justify-content-end">
     <li class="nav-item">
-      <a class="nav-link" to="/countries">Countries</a>
+      <span class="nav-link" @click.prevent="goToCountry">Countries</span>
     </li>
     <li class="nav-item">
-      <a class="nav-link" to="#">Profile</a>
+      <span class="nav-link" @click.prevent="goToReport">Profile</span>
     </li>
     <li class="nav-item">
       <span class="btn btn-danger" @click.prevent="logginOut">Logout</span>
@@ -18,6 +18,12 @@ export default {
         logginOut() {
             localStorage.removeItem('token')
             this.$router.push({ name:'Login' })
+        },
+        goToReport() {
+            this.$router.push({ name: 'Report' })
+        },
+        goToCountry() {
+            this.$router.push({ name: 'Country' })
         }
     }
 };
