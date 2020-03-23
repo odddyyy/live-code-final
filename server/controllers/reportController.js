@@ -20,7 +20,8 @@ class ReportController {
                 CountryId,
                 userId: req.userData.id
             })
-            const country = await Country.findOne({where:{id:CountryId}})
+            const country = await Reports.findOne()
+            console.log(country)
             res.status(201).json(reports)   
         } catch (err) {
             next(err)
